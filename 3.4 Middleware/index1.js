@@ -1,4 +1,5 @@
 import express from "express";
+import sanjay from "body-parser";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -6,7 +7,13 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 const port = 3000;
 
+app.use(sanjay.urlencoded({extended: true}));
+app.post("/submit", (req, res) => {
+  console.log(req.body);
+});
+
 app.get("/", (req, res) => {
+  
   res.sendFile(__dirname + "/public/index.html");
 });
 
